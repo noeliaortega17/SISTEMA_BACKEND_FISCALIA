@@ -58,8 +58,6 @@ public class FuncionarioServiceImpl implements FuncionarioService {
     Funcionario funcionarioFound = funcionarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Funcionario", id));
     funcionarioFound.setActivo(false);
     funcionarioRepository.save(funcionarioFound);
-    // Persona persona = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Enterprise", id));
-    // personaRepository.delete(persona);
   }
 
 }
