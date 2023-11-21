@@ -10,6 +10,7 @@ import fiscalia.api.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,7 +22,7 @@ public class InstructivoServiceImpl implements InstructivoService{
 
   @Override
   public List<Instructivo> getAll() {
-    return instructivoRepository.findAll();
+    return instructivoRepository.findAllByActivo(true);
   }
 
   @Override
@@ -47,6 +48,7 @@ public class InstructivoServiceImpl implements InstructivoService{
   public void delete(Integer id) {
     Instructivo instructivoFound = instructivoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Instructivo", id));
     instructivoFound.setActivo(false);
+    instructivoFound.setFecha_eliminacion(LocalDateTime.now());
     instructivoRepository.save(instructivoFound);
     // Persona persona = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Enterprise", id));
     // personaRepository.delete(persona);

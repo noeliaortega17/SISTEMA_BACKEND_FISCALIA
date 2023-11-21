@@ -3,7 +3,6 @@ package fiscalia.api.appFiscalia.presentation.request.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +14,6 @@ public class InstructivoDto {
   private Integer cite;
   private String descripcion;
   private Boolean fiscaliaGeneral;
-  @CreationTimestamp
-  public LocalDateTime fecha_instructivo;
+  public LocalDateTime fechaInstructivo;
 
 }

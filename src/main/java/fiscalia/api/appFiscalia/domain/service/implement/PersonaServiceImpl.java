@@ -7,6 +7,8 @@ import fiscalia.api.appFiscalia.domain.mapper.PersonaMapper;
 import fiscalia.api.appFiscalia.domain.service.interfaces.PersonaService;
 import fiscalia.api.appFiscalia.presentation.request.dto.PersonaDto;
 import fiscalia.api.exception.EntityNotFoundException;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,7 @@ public class PersonaServiceImpl implements PersonaService {
   public void delete(Integer id) {
     Persona personaFound = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Persona", id));
     personaFound.setActivo(false);
+    personaFound.setFecha_eliminacion(LocalDateTime.now());
     personaRepository.save(personaFound);
     // Persona persona = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Enterprise", id));
     // personaRepository.delete(persona);

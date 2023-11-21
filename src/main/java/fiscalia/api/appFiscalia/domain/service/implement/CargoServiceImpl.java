@@ -7,6 +7,8 @@ import fiscalia.api.appFiscalia.domain.mapper.CargoMapper;
 import fiscalia.api.appFiscalia.domain.service.interfaces.CargoService;
 import fiscalia.api.appFiscalia.presentation.request.dto.CargoDto;
 import fiscalia.api.exception.EntityNotFoundException;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -47,6 +49,7 @@ public class CargoServiceImpl implements CargoService {
   public void delete(Integer id) {
     Cargo cargoFound = cargoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cargo", id));
     cargoFound.setActivo(false);
+    cargoFound.setFecha_eliminacion(LocalDateTime.now());
     cargoRepository.save(cargoFound);
     // Persona persona = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Enterprise", id));
     // personaRepository.delete(persona);

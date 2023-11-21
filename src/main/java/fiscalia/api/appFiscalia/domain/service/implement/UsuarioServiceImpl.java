@@ -12,6 +12,7 @@ import fiscalia.api.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -43,6 +44,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
   @Override
   public Usuario update(Integer id, UsuarioDto usuarioDto) {
+    Funcionario funcionarioFound = funcionarioRepository.findById(usuarioDto.getIdFuncionario().getId()).orElseThrow(() -> new EntityNotFoundException("Funcionario para usuario", usuarioDto.getIdFuncionario().getId()));
+    usuarioDto.setIdFuncionario(funcionarioFound);
     Usuario usuarioFound = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario", id));
     Usuario usuario = usuarioMapper.fromDto(usuarioDto, usuarioFound);
     return usuarioRepository.save(usuario);
@@ -52,6 +55,7 @@ public class UsuarioServiceImpl implements UsuarioService {
   public void delete(Integer id) {
     Usuario usuarioFound = usuarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuario", id));
     usuarioFound.setActivo(false);
+    usuarioFound.setFecha_eliminacion(LocalDateTime.now());
     usuarioRepository.save(usuarioFound);
     // Persona persona = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Enterprise", id));
     // personaRepository.delete(persona);

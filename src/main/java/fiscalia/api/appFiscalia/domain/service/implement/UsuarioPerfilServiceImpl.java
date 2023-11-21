@@ -14,6 +14,7 @@ import fiscalia.api.exception.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -48,6 +49,10 @@ public class UsuarioPerfilServiceImpl implements UsuarioPerfilService {
 
   @Override
   public UsuarioPerfil update(Integer id, UsuarioPerfilDto usuarioPerfilDto) {
+    Usuario usuarioFound = usuarioRepository.findById(usuarioPerfilDto.getIdUsuario().getId()).orElseThrow(() -> new EntityNotFoundException("Usuario para usuarioPerfil", usuarioPerfilDto.getIdUsuario().getId()));
+    usuarioPerfilDto.setIdUsuario(usuarioFound);
+    Perfil perfilFound = perfilRepository.findById(usuarioPerfilDto.getIdPerfil().getId()).orElseThrow(() -> new EntityNotFoundException("Perfil para usuarioPerfil", usuarioPerfilDto.getIdPerfil().getId()));
+    usuarioPerfilDto.setIdPerfil(perfilFound);
     UsuarioPerfil usuarioPerfilFound = usuarioPerfilRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("UsuarioPerfil", id));
     UsuarioPerfil usuarioPerfil = usuarioPerfilMapper.fromDto(usuarioPerfilDto, usuarioPerfilFound);
     return usuarioPerfilRepository.save(usuarioPerfil);
@@ -57,6 +62,7 @@ public class UsuarioPerfilServiceImpl implements UsuarioPerfilService {
   public void delete(Integer id) {
     UsuarioPerfil usuarioPerfilFound = usuarioPerfilRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("UsuarioPerfil", id));
     usuarioPerfilFound.setActivo(false);
+    usuarioPerfilFound.setFecha_eliminacion(LocalDateTime.now());
     usuarioPerfilRepository.save(usuarioPerfilFound);
     // Persona persona = personaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Enterprise", id));
     // personaRepository.delete(persona);

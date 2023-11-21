@@ -11,6 +11,8 @@ import fiscalia.api.appFiscalia.domain.mapper.FuncionarioMapper;
 import fiscalia.api.appFiscalia.domain.service.interfaces.FuncionarioService;
 import fiscalia.api.appFiscalia.presentation.request.dto.FuncionarioDto;
 import fiscalia.api.exception.EntityNotFoundException;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -48,6 +50,10 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 
   @Override
   public Funcionario update(Integer id, FuncionarioDto funcionarioDto) {
+    Persona personaFound = personaRepository.findById(funcionarioDto.getIdPersona().getId()).orElseThrow(() -> new EntityNotFoundException("Persona para funcionario", funcionarioDto.getIdPersona().getId()));
+    funcionarioDto.setIdPersona(personaFound);
+    Cargo cargoFound = cargoRepository.findById(funcionarioDto.getIdCargo().getId()).orElseThrow(() -> new EntityNotFoundException("Cargo para funcionario", funcionarioDto.getIdCargo().getId()));
+    funcionarioDto.setIdCargo(cargoFound);
     Funcionario funcionarioFound = funcionarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Funcionario", id));
     Funcionario funcionario = funcionarioMapper.fromDto(funcionarioDto, funcionarioFound);
     return funcionarioRepository.save(funcionario);
@@ -57,6 +63,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
   public void delete(Integer id) {
     Funcionario funcionarioFound = funcionarioRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Funcionario", id));
     funcionarioFound.setActivo(false);
+    funcionarioFound.setFecha_eliminacion(LocalDateTime.now());
     funcionarioRepository.save(funcionarioFound);
   }
 

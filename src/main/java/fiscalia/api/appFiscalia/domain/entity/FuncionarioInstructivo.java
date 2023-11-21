@@ -5,27 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(name = "instructivo")
+@Table(name = "funcionarioInstructivo")
 
-public class Instructivo extends Base {
+public class FuncionarioInstructivo extends Base {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
-  @Column()
-  private Integer cite;
+  @ManyToOne
+  @JoinColumn(name = "funcionario_id")
+  private Funcionario idFuncionario;
 
-  private String descripcion;
-
-  private Boolean fiscaliaGeneral;
-
-  public LocalDateTime fechaInstructivo;
+  @ManyToOne
+  @JoinColumn(name = "instructivo_id")
+  private Instructivo idInstructivo;
 
 }
 
