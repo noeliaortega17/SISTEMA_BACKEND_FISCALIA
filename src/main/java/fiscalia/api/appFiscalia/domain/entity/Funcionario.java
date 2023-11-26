@@ -31,6 +31,9 @@ public class Funcionario extends Base {
   @JoinColumn(name = "cargo_id")
   private Cargo idCargo;
 
+  @ManyToOne
+  @JoinColumn(name = "unidad_id")
+  private Unidad idUnidad;
 }
 
 

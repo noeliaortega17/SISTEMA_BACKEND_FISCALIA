@@ -16,6 +16,7 @@ public class FuncionarioMapper {
 
     funcionario.setIdPersona(funcionarioDto.getIdPersona());
     funcionario.setIdCargo(funcionarioDto.getIdCargo());
+    funcionario.setIdUnidad(funcionarioDto.getIdUnidad());
 
     return funcionario;
   }
