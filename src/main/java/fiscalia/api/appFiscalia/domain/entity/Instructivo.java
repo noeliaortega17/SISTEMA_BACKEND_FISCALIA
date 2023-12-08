@@ -27,6 +27,10 @@ public class Instructivo extends Base {
 
   public LocalDateTime fechaInstructivo;
 
+  @Column(columnDefinition = "TEXT")
+  private String pdf;
+
+
 }
 
 

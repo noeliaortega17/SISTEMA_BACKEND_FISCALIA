@@ -15,6 +15,7 @@ public class InstructivoMapper {
     }
 
     instructivo.setCite(instructivoDto.getCite());
+    instructivo.setPdf(instructivoDto.getPdf());
     instructivo.setDescripcion(instructivoDto.getDescripcion());
     instructivo.setFiscaliaGeneral(instructivoDto.getFiscaliaGeneral());
     instructivo.setFechaInstructivo(instructivoDto.getFechaInstructivo());

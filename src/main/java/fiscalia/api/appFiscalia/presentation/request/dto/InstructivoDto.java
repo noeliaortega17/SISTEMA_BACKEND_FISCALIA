@@ -15,5 +15,6 @@ public class InstructivoDto {
   private String descripcion;
   private Boolean fiscaliaGeneral;
   public LocalDateTime fechaInstructivo;
+  private String pdf;
 
 }
