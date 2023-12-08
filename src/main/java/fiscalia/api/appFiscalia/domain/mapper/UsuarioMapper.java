@@ -2,6 +2,7 @@ package fiscalia.api.appFiscalia.domain.mapper;
 
 import fiscalia.api.appFiscalia.domain.entity.Usuario;
 import fiscalia.api.appFiscalia.presentation.request.dto.UsuarioDto;
+import fiscalia.api.appFiscalia.presentation.request.dto.UsuarioLoginResponse;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,5 +21,4 @@ public class UsuarioMapper {
 
     return usuario;
   }
-
 }

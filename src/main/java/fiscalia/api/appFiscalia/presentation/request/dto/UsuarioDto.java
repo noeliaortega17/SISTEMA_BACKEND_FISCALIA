@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UsuarioDto {
   private Integer id;
-  private Integer usuario;
+  private String usuario;
   private String contrasena;
   private Funcionario idFuncionario;
 

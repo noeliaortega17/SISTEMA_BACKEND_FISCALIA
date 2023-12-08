@@ -17,7 +17,7 @@ public class Usuario extends Base {
   private Integer id;
 
   @Column()
-  private Integer usuario ;
+  private String usuario ;
   @Column(length = 10 ,nullable = false)
   private String contrasena;
 

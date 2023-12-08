@@ -3,6 +3,8 @@ package fiscalia.api.appFiscalia.presentation.controller;
 import fiscalia.api.appFiscalia.domain.entity.Usuario;
 import fiscalia.api.appFiscalia.domain.service.interfaces.UsuarioService;
 import fiscalia.api.appFiscalia.presentation.request.dto.UsuarioDto;
+import fiscalia.api.appFiscalia.presentation.request.dto.UsuarioLoginRequest;
+import fiscalia.api.appFiscalia.presentation.request.dto.UsuarioLoginResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +47,12 @@ public class UsuarioController {
   public ResponseEntity<Object> delete(@PathVariable Integer id) {
     usuarioService.delete(id);
     return ResponseEntity.ok().build();
+  }
+
+  @PostMapping("/login")
+  public ResponseEntity<UsuarioLoginResponse> login(@RequestBody UsuarioLoginRequest userLogin) {
+    UsuarioLoginResponse usuarioLogued = usuarioService.login(userLogin);
+    return ResponseEntity.status(HttpStatus.OK).body(usuarioLogued);
   }
 
 }

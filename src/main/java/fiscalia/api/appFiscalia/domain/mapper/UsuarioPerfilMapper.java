@@ -14,7 +14,7 @@ public class UsuarioPerfilMapper {
       usuarioPerfil = usuarioPerfilFound;
     }
 
-    usuarioPerfil.setIdUsuario(usuarioPerfilDto.getIdUsuario());
+    usuarioPerfil.setUsuario(usuarioPerfilDto.getIdUsuario());
     usuarioPerfil.setIdPerfil(usuarioPerfilDto.getIdPerfil());
 
     return usuarioPerfil;

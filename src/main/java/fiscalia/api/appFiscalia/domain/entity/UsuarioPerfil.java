@@ -17,8 +17,8 @@ public class UsuarioPerfil extends Base {
   private Integer id;
 
   @ManyToOne
-  @JoinColumn(name = "usuario_id")
-  private Usuario idUsuario;
+  @JoinColumn(name = "usuario")
+  private Usuario usuario;
 
   @ManyToOne
   @JoinColumn(name = "perfil_id")
