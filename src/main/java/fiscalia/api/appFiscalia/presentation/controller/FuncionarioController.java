@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/funcionario")
-public class FuncionarioController {
+public class
+FuncionarioController {
 
   private final FuncionarioService funcionarioService;
 

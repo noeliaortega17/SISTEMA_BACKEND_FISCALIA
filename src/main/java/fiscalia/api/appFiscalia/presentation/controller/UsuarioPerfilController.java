@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/usuarioPerfil")
+@RequestMapping("/usuarioperfil")
 public class UsuarioPerfilController {
 
   private final UsuarioPerfilService usuarioPerfilService;
